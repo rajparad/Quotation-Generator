@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <app-header></app-header>
+      The Quotation Tab
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-label>Create your Database</ion-label>
+  <ion-item>
+  <ion-label position="stacked">Database Name</ion-label>
+  <ion-input placeholder="Database Name" [(ngModel)]="dname" type = "text" ></ion-input>
+  
+  <ion-label position="stacked">Collection Name</ion-label>
+  <ion-input placeholder="Collection Name" [(ngModel)]="dcname" type = "text"></ion-input>
+  <ion-button type="submit" (click)="storedb()" [disabled]="disabled" >Create Database</ion-button>
+</ion-item>
+<br>
+<ion-label>Add Your Quotation</ion-label>
+  <ion-item>
+    
+     
+    <ion-label position="stacked">Customer Name</ion-label>
+    <ion-input placeholder="Name" [(ngModel)]="cName" type = "text" ></ion-input>
+    
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input placeholder="E-mail" [(ngModel)]="cEmail" type = "text"></ion-input>
+    <ion-label position="stacked">Address</ion-label>
+    <ion-input placeholder="Address" [(ngModel)]="cAddress" type = "text"></ion-input>
+    <ion-label position="stacked">Number of Rooms</ion-label>
+    <ion-input placeholder="Room Number" [(ngModel)]="nRooms" type = "Number" (ngModelChange) = "roomData()"></ion-input>
+    
+    <ion-item *ngFor="let x of this.rooms; let i = index">
+
+      <ion-card color="primary" class="ion-card">
+        <ion-card-content expand="block" class="info">
+      <ion-label position="stacked">Type of room</ion-label>
+      <ion-input [(ngModel)] = "x.desc1"   type = "text" required> </ion-input>
+   
+      <ion-label position="stacked">Length</ion-label>
+      <ion-input placeholder="Length"  [(ngModel)]="x.length1"   type = "number"></ion-input>
+      <ion-label position="stacked">Width</ion-label>
+      <ion-input placeholder="Number" [(ngModel)]="x.width1" type = "number" ></ion-input>
+
+      <ion-label position="stacked">Color</ion-label><br>
+      <input type = "color"  [(ngModel)]="x.color4" />
+
+      <br>
+      
+  <br>
+    <ion-label>Paint Type</ion-label>
+    <ion-item color="warning" >
+      
+    <ion-select [(ngModel)]="x.typeP" placeholder="Select One">
+      <ion-select-option  value="Standard">Standard ($24.99 per can)</ion-select-option>
+      <ion-select-option  value="Premium" >Premium ($39.99 per can)</ion-select-option>
+    </ion-select>
+  </ion-item>
+   
+      <br>
+      <hr>
+      
+        </ion-card-content>
+    </ion-card>
+    
+      </ion-item>
+      
+      <ion-button type="submit" color="success" (click)="storeData()">Add Quotation</ion-button>
+  </ion-item>
+  <br>
+    <ion-label>Delete All Records</ion-label>
+    <ion-item>
+      <ion-button type="submit" color="tertiary" (click)="deleteall()" >Delete All</ion-button>
+    </ion-item>
+    <br><ion-item *ngFor="let x of this.outMsg.msg; let i = index">
+  {{x.room.length}}
+</ion-item>
+{{outMsg.msg}}
+<li *ngFor="let i of outRec">Id: {{i.cid}} <br> Date: {{i.date | date }}<br> Name: {{i.cname}}<br> E-mail{{i.cem}}<br> Address:{{i.cad}}<br> Room Info:
+  <div *ngFor="let r of i.room">Room Desc{{r.desc1}}<br>Room Length: {{r.length1}}<br>Room Width: {{r.width1}}<br>Room Color: {{r.color4}}<br>Color Type: {{r.typeP}}</div> <br><br></li>
+  <ion-item>
+  <app-footer></app-footer>
+</ion-item>
+</ion-content>
+

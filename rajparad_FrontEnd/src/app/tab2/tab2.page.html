@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <app-header></app-header>
+      List Quotation Tab
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+    
+    </ion-toolbar>
+  </ion-header>
+ <br>
+  <ion-item>
+  <ion-button type="submit" color="warning"(click)="retrieve()" size="medium">Retrive All/Updated Records</ion-button>
+    
+  <ion-label position="stacked" class="update">To update Enter Quotation Id and go to update page </ion-label>
+  <ion-input placeholder="Quotation id" [(ngModel)]="qid" type = "number"></ion-input><br>
+  <ion-button [routerLink]="['/editquotationpage',{qid}]" size="medium" color="success">Go to Update Page </ion-button>
+</ion-item>
+  <hr>
+ 
+  <ion-item *ngFor="let x of this.outMsg.msg;">
+  {{x.room.length}}
+</ion-item>
+{{outMsg.msg}}
+<ion-card color="tertiary">
+<li *ngFor="let i of outRec;">
+
+  <ul>
+  <li>Quotation  Id: {{i.cid}}</li> 
+  <li>Date: {{i.date | date }}</li>
+  <li>Name: {{i.cname}}</li>
+  <li>E-mail: {{i.cem}}</li> <li>Address: {{i.cad}}</li>
+  <hr class="color"><ul><li><strong>Room Info:</strong></li> <br>
+    <ul>
+  <div *ngFor="let r of i.room"><li>Room Desc: {{r.desc1}}</li><li>Room Length: {{r.length1}}</li><li>Room Width: {{r.width1}}</li>
+    <li>Room Color: {{r.color4}}</li>
+    <li>Color Type: {{r.typeP}}</li>
+    <br>
+    <br>
+    </div>
+  </ul>
+  <li><ion-button type="submit" (click)="deleteone(i.cname)" size="small" color="danger" >Delete</ion-button> </li>
+   
+  </ul> 
+    
+  </ul>
+    <br><br><hr><hr></li>
+    
+  </ion-card>
+  <ion-item>
+  <app-footer></app-footer>
+</ion-item>
+</ion-content>

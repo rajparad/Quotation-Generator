@@ -1,0 +1,7 @@
+{
+  "name": "rajparad_FrontEnd",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
